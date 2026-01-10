@@ -1,0 +1,51 @@
+
+Esercizio 0 (“Se copiate, vi cacciamo”) 
+Rendete la vostra directory home inaccessibile ad altri utenti (sia in lettura che in esecuzione). Si puo’ 
+tenere una sola directory  in /public che abbia come nome il vostro username e.g. 
+“/public/giovanni.rossi” e che abbia permessi 700.
+Non usare system o popen o simili! Non fare exec di “sh -c”. 
+Esercizio 1: Linguaggio C (obbligatorio) 20 punti
+Sia dato questo programma hw.c (vi viene fornito in /public/hw.c)
+#include <stdio.h>
+int main(int argc, char*argv[]) {
+        printf("hello world:");
+        for(argv++, argv--; argc > 0; argv++, argc--)
+                printf(" %s",*argv);
+        printf("\n");
+        return 0;
+}
+Il programma hw.c può essere compilato come libreria dinamica:
+gcc --shared -o hw.so hw.c
+La libreria dinamica non è un eseguibile
+$ ./hw.so 1 2 3 4
+Segmentation fault
+ma può essere caricata a tempo di esecuzione tramite dlopen. Scrivere un programma "lancia" in
+grado di eseguire il codice di hw.so
+$ ./lancia hw.so 1 2 3 4
+hello world: hw.so 1 2 3 4
+(suggerimenti: dlopen non cerca nella directory corrente, occorre passare il path assoluto della libreria.
+"main" in hw.so è una normale funzione: occorre cercare l'indirizzo della funzione main nella libreria
+ed invocarla,)
+
+
+Esercizio 2: Linguaggio C: 10 punti
+Estendere l'esercizio 1. Il nuovo programma autolancia deve riconoscere se il primo parametro è una
+libreria dinamica o un eseguibile gestendo entrambi i casi:
+gcc -o hw hw.c
+$ ./autolancia hw.so 1 2 3 4
+hello world: hw.so 1 2 3 4
+$ ./autolancia hw 1 2 3 4
+hello world: hw.so 1 2 3 4
+
+
+Esercizio 3: Python o bash: (10  punti)
+Scrivere uno script in grado si cercare all'interno di un sottoalbero del file system il file modificato più
+di recente e quello la cui ultima modifca è avvenuta più anticamente.
+Esercizio 4: (“Consegnate! E’ ora!”): 
+Consegnare lo script e il sorgente dei programma C, in attachment separati, entro il tempo a
+disposizione, via e-mail a:  renzo chiocciola cs.unibo.it.  Il subject   del mail deve essere uguale a
+PROVAPRATICA, i nomi dei file in attachment devono contenere il vostro cognome (per evitare
+confusioni  in fase di correzione).
+INOLTRE:
+Se volete che il vostro lavoro venga giudicato, lasciate aperta la vostra sessione (incluso il vostro editor)
+e lasciate il laboratorio. Verrete richiamati uno alla volta per una breve discussione sul vostro elaborato.

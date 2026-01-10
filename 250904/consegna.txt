@@ -1,0 +1,54 @@
+Prova Pratica di Laboratorio di Sistemi Operativi
+4 settembre 2025
+
+Esercizio 0 (“Se copiate, vi cacciamo”) 
+Rendete la vostra directory home inaccessibile ad altri utenti (sia in lettura che in esecuzione). Si puo’ 
+tenere una sola directory  in /public che abbia come nome il vostro username e.g. 
+“/public/giovanni.rossi” e che abbia permessi 700.
+Non usare system o popen o simili! Non fare exec di “sh -c”. (per python usare subprocess e non 
+os.system, os.spawn).
+
+Esercizio 1: Linguaggio C (obbligatorio) 20 punti Scrivere un programma sha1index che ha al più un 
+parametro. (se non ha parametro opera sulla directory corrente, altrimenti sulla directory indicata dal 
+parametro)
+Per ogni file f ordinario nella directory il programma crea un link simbolico in una sottodirectory 
+nascosta di nome “.sha1index” che punta al file e ha come nome la hash sha1 del contenuto.
+Es. data nella dir corrente due file f1 e f2, il programma  sha1index crea nella directory .sha1index 
+due link simbolici:
+.sha1index/5e180efdd44e3a3585834b6bd618ef7c5a462d9a che punta a f1 e
+.sha1index/82442bcd9a1e36899d43c04af79491cd616f7b30a che punta a f2
+(i valori delle hash sono solo a titolo di esempio, rappresentano le hash  del contenuto di f1 e di f2)
+
+Esercizio 2: Linguaggio C:  10 punti  Scrivere un programma sha1update che aggiorna i file creati dal 
+programma dell’esercizio 1. Per ogni link simbolico presente nella directory nascosta .sha1index (se c’è) 
+possono verificarsi due casi:
+•il file è stato cancellato (il link punta a un file inesistente), viene cancellato il link
+•il file è stato modificato più recentemente della data di creazione del link, occorre aggiornare il 
+link simbolico (si ricalcola la hash e si ricrea  il link simbolico)
+
+Esercizio 3: Python o bash: 10   punti:  Scrivere un programma Python o uno script bash inotab. 
+Questo programma scandisce il file system a partire dalla directory corrente e genera in output un 
+elenco (una riga per ogni file o directory) contenente il numero di i-node e il pathname del file:
+6508 a
+6609 x/b
+6710 c
+6801 x
+L’elenco prodotto deve essere ordinato per valori crescenti del numero di i-node
+Il programma inotab può avere come parametro un numero intero che limita la profondità della 
+scansione.
+Inotab → scandisce l’intero sottoalbero
+inotab 0 → scandisce solo la directory corrente
+inotab 1 → scandisce la directory corrente e le sottodirectory della dir corrente
+inotab 2 → scandisce anche le sottodirectory delle sottodirectory, ma non va oltre, ...
+
+Esercizio 4: (“Consegnate! E’ ora!”): 
+Usando il vostro account di posta elettronica di unibo, consegnare lo script e il sorgente dei 
+programmi C, in attachment separati, entro il tempo a disposizione, via e-mail a: renzo chiocciola 
+cs.unibo.it. l'oggetto della mail deve essere uguale a PROVAPRATICA).
+Rinominate i file python .py con suffisso diverso.
+INOLTRE:
+Se volete che il vostro lavoro venga giudicato, lasciate aperta la vostra sessione (incluso il vostro editor) 
+e una finestra terminale che mostri l'output del comando sha1sum di tutti i file consegnati e 
+lasciate il laboratorio. Verrete richiamati uno alla volta per una breve discussione sul vostro elaborato.
+NB: i programmi e gli script consegnati devono essere completamente privi di commenti.
+Non verranno accettate e-mail contenenti puntatori a file memorizzati in cloud.
