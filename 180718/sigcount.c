@@ -1,19 +1,21 @@
+#include <errno.h> // Per errno
 #define _GNU_SOURCE
-#include <errno.h>
-#include <signal.h>
+#include <signal.h> // Per signalfd
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/signalfd.h>
-#include <unistd.h>
+#include <sys/signalfd.h> // Per signalfd
+#include <unistd.h> // Per close
 
 int main(void) {
     // 1) Prepara la mask dei segnali che vuoi ricevere via signalfd
     sigset_t mask;
+    // Inizializza la mask a zero
     if (sigemptyset(&mask) == -1) {
         perror("sigemptyset");
         return 1;
     }
+    // Aggiungi SIGUSR1 e SIGUSR2 alla mask
     if (sigaddset(&mask, SIGUSR1) == -1) {
         perror("sigaddset(SIGUSR1)");
         return 1;
