@@ -43,4 +43,42 @@ int main(void) {
     printf("  kill -USR2 %ld\n", (long)getpid());
     fflush(stdout);
 
-    int c
+    int counter = 0;
+
+    // 4) Loop: leggi struct signalfd_siginfo dal fd
+    for (;;) {
+        struct signalfd_siginfo si;
+        ssize_t n = read(sfd, &si, sizeof(si));
+
+        if (n == -1) {
+            if (errno == EINTR) continue;
+            perror("read(signalfd)");
+            close(sfd);
+            return 1;
+        }
+
+        if (n != (ssize_t)sizeof(si)) {
+            fprintf(stderr, "read: size inattesa (%zd)\n", n);
+            close(sfd);
+            return 1;
+        }
+
+        // 5) Aggiorna contatore in base al segnale ricevuto
+        if (si.ssi_signo == SIGUSR1) {
+            counter += 1;
+            printf("%d\n", counter);
+            fflush(stdout);
+        } else if (si.ssi_signo == SIGUSR2) {
+            counter -= 1;
+            printf("%d\n", counter);
+            fflush(stdout);
+        } else {
+            // Non dovrebbe succedere perché la mask include solo questi due.
+            fprintf(stderr, "Segnale inatteso: %u\n", si.ssi_signo);
+        }
+    }
+
+    // Non si arriva mai qui
+    // close(sfd);
+    // return 0;
+}
