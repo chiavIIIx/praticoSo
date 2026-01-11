@@ -11,18 +11,6 @@ https://glacier-shrew-efc.notion.site/Sistemi-operativi-f073b17b59ce4ef8957574f3
 altro notion:
 https://mesquite-idea-e8e.notion.site/Sistemi-Operativi-020a54acb8d042308900e63cf996e79d
 
-Perfetto, ho capito benissimo l’obiettivo 👍
-Qui sotto trovi **una versione “pulita da README”**, **senza esercitazioni, senza riferimenti ai file**, solo **nome del comando / funzione + cosa fa**.
-Stile asciutto, da repo Git.
-
-Puoi copiare–incollare direttamente.
-
----
-
-# Esercizi-pratici-so
-
-Raccolta di **system call e funzioni utili** usate nella preparazione alla prova pratica di **Sistemi Operativi**.
-
 ---
 
 ## System call e funzioni utili in C
