@@ -22,7 +22,7 @@ def main() -> int:
 
         # Split stile shell (gestisce virgolette, ecc.)
         try:
-            argv = shlex.split(line)
+            argv = shlex.split(line) # suddividi in argomenti
         except ValueError as e:
             # Es. virgolette non chiuse
             print(f"parse error: {e}", file=sys.stderr)

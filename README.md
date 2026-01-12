@@ -13,6 +13,101 @@ https://mesquite-idea-e8e.notion.site/Sistemi-Operativi-020a54acb8d042308900e63c
 
 ---
 
+## Comandi shell
+
+### Navigazione nel file system
+
+* `pwd` – stampa la directory corrente
+* `cd <directory>` – cambia directory corrente
+* `ls [opzioni] [directory]` – lista il contenuto di una directory
+* `mkdir <directory>` – crea una directory
+* `rmdir <directory>` – rimuove una directory vuota
+
+
+### Gestione file
+
+* `cp <src> <dst>` – copia file
+* `mv <src> <dst>` – sposta o rinomina file
+* `rm <file>` – rimuove file
+* `ln <file> <link>` – crea un hard link
+* `ln -s <file> <link>` – crea un link simbolico
+* `cat <file>` – stampa il contenuto di un file
+* `tac <file>` – stampa il file al contrario (righe)
+* `rev <file>` – stampa il file invertendo i caratteri
+
+
+### Permessi e proprietà
+
+* `chmod <mode> <file>` – modifica i permessi di un file
+* `chown <user> <file>` – cambia il proprietario di un file
+* `chgrp <group> <file>` – cambia il gruppo di un file
+
+
+### Informazioni su file system
+
+* `df [opzioni]` – mostra lo spazio libero sui filesystem
+* `du [opzioni] [directory]` – mostra l’uso di spazio su disco
+
+
+### Gestione processi
+
+* `ps` – mostra i processi attivi
+* `nice -n <val> <cmd>` – esegue un comando con priorità modificata
+* `renice <val> -p <pid>` – modifica la priorità di un processo
+* `kill <pid>` – invia un segnale a un processo
+* `kill -9 <pid>` – termina forzatamente un processo
+
+
+### Job control
+
+* `jobs` – elenca i job in background
+* `fg %<n>` – porta un job in foreground
+* `bg %<n>` – riprende un job in background
+* `&` – esegue un comando in background
+
+
+### Redirezione e pipe
+
+* `>` – redirezione output
+* `>>` – redirezione output in append
+* `<` – redirezione input
+* `|` – pipe tra comandi
+* `tee` – copia input su file e stdout
+
+
+### Ricerca e text processing
+
+* `find <path> <expression>` – ricerca file
+* `grep <pattern>` – ricerca stringhe
+* `awk` – text processing basato su pattern
+* `sed` – stream editor
+
+
+### Variabili e ambiente
+
+* `env` – mostra le variabili d’ambiente
+* `export <var>` – esporta una variabile
+* `unset <var>` – rimuove una variabile
+
+
+### Documentazione
+
+* `man <command>` – manuale di un comando
+* `info <command>` – documentazione info
+* `apropos <keyword>` – ricerca nei manuali
+
+
+### Built-in utili
+
+* `echo` – stampa su stdout
+* `printf` – stampa formattata
+* `read` – legge input da stdin
+* `type <cmd>` – indica se un comando è built-in o esterno
+* `history` – mostra lo storico dei comandi
+
+
+---
+
 ## System call e funzioni utili in C
 
 ### Gestione processi
